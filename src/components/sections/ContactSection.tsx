@@ -1,8 +1,7 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Github, Mail, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useForm, ValidationError } from "@formspree/react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/0xIammatrixx", label: "GitHub" },
@@ -12,9 +11,39 @@ const socialLinks = [
 export const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [state, handleSubmit] = useForm("xjknpgzw");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  if (state.succeeded) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xjknpgzw", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSuccess) {
     return (
       <section id="contact" className="py-24 relative" ref={ref}>
         <div className="container mx-auto px-6">
@@ -74,7 +103,6 @@ export const ContactSection = () => {
                   className="w-full px-4 py-3 rounded-lg glass border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-300 bg-secondary/50"
                   placeholder="Your name"
                 />
-                <ValidationError prefix="Name" field="name" errors={state.errors} className="text-destructive text-sm mt-1" />
               </div>
               <div>
                 <label
@@ -91,7 +119,6 @@ export const ContactSection = () => {
                   className="w-full px-4 py-3 rounded-lg glass border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-300 bg-secondary/50"
                   placeholder="your@email.com"
                 />
-                <ValidationError prefix="Email" field="email" errors={state.errors} className="text-destructive text-sm mt-1" />
               </div>
               <div>
                 <label
@@ -108,16 +135,18 @@ export const ContactSection = () => {
                   className="w-full px-4 py-3 rounded-lg glass border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-300 resize-none bg-secondary/50"
                   placeholder="Tell me about your project..."
                 />
-                <ValidationError prefix="Message" field="message" errors={state.errors} className="text-destructive text-sm mt-1" />
               </div>
+              {error && (
+                <p className="text-destructive text-sm">{error}</p>
+              )}
               <Button
                 type="submit"
                 variant="hero"
                 size="lg"
                 className="w-full"
-                disabled={state.submitting}
+                disabled={isSubmitting}
               >
-                {state.submitting ? (
+                {isSubmitting ? (
                   "Sending..."
                 ) : (
                   <>
