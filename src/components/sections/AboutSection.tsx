@@ -37,22 +37,25 @@ export const AboutSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
             About <span className="text-gradient">Me</span>
           </h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            A passionate mobile developer crafting digital experiences
-          </p>
+
+          <img
+            src="assets/profile.jpg"
+            alt="Avatar"
+            className="w-32 h-32 rounded-full mx-auto mb-6"
+          />
 
           <div className="glass rounded-2xl p-8 md:p-12 mb-12">
             <p className="text-lg text-foreground/90 leading-relaxed mb-6">
-              I'm a dedicated Flutter mobile developer with a passion for creating 
-              beautiful, high-performance applications. With expertise in Dart and 
-              the Flutter framework, I build cross-platform apps that deliver 
-              native-like experiences on both iOS and Android.
+              I'm a 21 year old Software Engineering graduate. I'm a dedicated Flutter mobile developer with a passion for creating
+              beautiful, high-performance applications. With expertise in Dart and
+              the Flutter framework, I build cross-platform apps that deliver
+              native-like experiences on both iOS and Android, building clean, scalable apps with additional skiil in blockchain and smart contract integration.
             </p>
             <p className="text-lg text-foreground/90 leading-relaxed">
-              My journey in mobile development has equipped me with skills in 
-              state management, REST APIs, Firebase integration, and modern UI/UX 
-              principles. I'm constantly exploring new technologies and best 
-              practices to deliver exceptional mobile experiences.
+              My journey in mobile development has equipped me with skills in
+              problem-solving, clean code, and modern UI/UX
+              principles. I'm constantly exploring new technologies and best
+              practices to deliver exceptional mobile experiences. I’m currently open to mobile development opportunities, collaborations, and exciting technical challenges.
             </p>
           </div>
 

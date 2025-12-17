@@ -44,7 +44,7 @@ export const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {"<Dev />"}
+          {"</>"}
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -61,7 +61,7 @@ export const Navbar = () => {
           ))}
           <li>
             <Button variant="hero" size="sm" asChild>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/0xIammatrixx" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </Button>
@@ -101,7 +101,7 @@ export const Navbar = () => {
               ))}
               <li>
                 <Button variant="hero" className="w-full" asChild>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/0xIammatrixx" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </Button>

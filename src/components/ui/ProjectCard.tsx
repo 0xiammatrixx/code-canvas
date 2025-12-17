@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useState, useEffect } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -22,7 +29,28 @@ export const ProjectCard = ({
   demoUrl,
   index,
 }: ProjectCardProps) => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [aspectRatios, setAspectRatios] = useState<number[]>([]);
+
+  // Detect aspect ratio for each image
+  useEffect(() => {
+    const fetchRatios = async () => {
+      const ratios = await Promise.all(
+        screenshots.map(
+          (src) =>
+            new Promise<number>((resolve) => {
+              const img = new Image();
+              img.src = src;
+              img.onload = () => {
+                resolve(img.height / img.width); // >1 = tall phone image
+              };
+            })
+        )
+      );
+      setAspectRatios(ratios);
+    };
+
+    fetchRatios();
+  }, [screenshots]);
 
   return (
     <motion.div
@@ -32,46 +60,49 @@ export const ProjectCard = ({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="glass rounded-2xl overflow-hidden hover-lift group"
     >
-      {/* Image Carousel */}
-      <div className="relative aspect-video overflow-hidden bg-secondary/50">
-        <motion.img
-          key={currentImage}
-          src={screenshots[currentImage]}
-          alt={`${title} screenshot ${currentImage + 1}`}
-          className="w-full h-full object-cover"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        />
-        
-        {/* Image Navigation Dots */}
-        {screenshots.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {screenshots.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentImage(idx)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  idx === currentImage
-                    ? "bg-primary w-6"
-                    : "bg-foreground/30 hover:bg-foreground/50"
-                }`}
-                aria-label={`View screenshot ${idx + 1}`}
-              />
-            ))}
-          </div>
-        )}
+      {/* Carousel */}
+      <Carousel className="relative">
+        <div className="absolute top-3 right-3 z-10 px-2 py-1 text-[10px] rounded-full bg-black/40 text-white backdrop-blur-sm">
+          Swipe →
+        </div>
 
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+        <CarouselContent>
+          {screenshots.map((src, idx) => {
+            const isPortrait = aspectRatios[idx] > 1.2;
 
-      {/* Content */}
+            return (
+              <CarouselItem key={idx}>
+                <motion.div
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: isPortrait ? 1 : 1 }}
+                  transition={{ duration: 1.2 }}
+                  className="w-full h-full"
+                >
+                  <motion.img
+                    src={src}
+                    className={`w-full h-[300px] object-contain bg-secondary/40`}
+                    alt={`Screenshot ${idx + 1}`}
+                    initial={{ scale: 1.3 }}
+                    animate={{ scale: isPortrait ? 1 : 1.1 }}
+                    transition={{ duration: 1 }}
+                  />
+                </motion.div>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      {/* Content Area */}
       <div className="p-6">
         <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
           {title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-4">
           {description}
         </p>
 
@@ -87,17 +118,18 @@ export const ProjectCard = ({
           ))}
         </div>
 
-        {/* Action Buttons */}
+        {/* Buttons */}
         <div className="flex gap-3">
           <Button variant="outline" size="sm" className="flex-1" asChild>
-            <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+            <a href={githubUrl} target="_blank">
               <Github size={16} />
               GitHub
             </a>
           </Button>
+
           {demoUrl && (
             <Button variant="hero" size="sm" className="flex-1" asChild>
-              <a href={demoUrl} target="_blank" rel="noopener noreferrer">
+              <a href={demoUrl} target="_blank">
                 <Play size={16} />
                 Demo
               </a>

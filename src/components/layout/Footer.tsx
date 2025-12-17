@@ -13,12 +13,9 @@ export const Footer = () => {
           className="flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <p className="text-muted-foreground text-sm">
-            © {currentYear} Your Name. Built with React & TailwindCSS.
+            © {currentYear} Otom David.
           </p>
-          <p className="text-muted-foreground text-sm">
-            Crafted with <span className="text-primary">♥</span> for great experiences
-          </p>
-        </motion.div>
+          </motion.div>
       </div>
     </footer>
   );

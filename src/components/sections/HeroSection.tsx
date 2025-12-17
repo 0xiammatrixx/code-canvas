@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Twitter, } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
@@ -54,7 +54,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             Hi, I'm{" "}
-            <span className="text-gradient">Your Name</span>
+            <span className="text-gradient">Otom David</span>
           </motion.h1>
 
           <motion.p
@@ -83,7 +83,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Button variant="hero" size="lg" asChild>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/0xIammatrixx" target="_blank" rel="noopener noreferrer">
                 View My Work
                 <ArrowRight size={18} />
               </a>
@@ -103,9 +103,9 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             {[
-              { icon: Github, href: "https://github.com", label: "GitHub" },
-              { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+              { icon: Github, href: "https://github.com/0xIammatrixx", label: "GitHub" },
+              { icon: Twitter, href: "https://twitter.com/_i_am_matrix", label: "X" },
+              { icon: Mail, href: "mailto:davidotom50@gmail.com", label: "Email" },
             ].map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}

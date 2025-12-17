@@ -5,49 +5,41 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 // Sample project data - replace with your actual projects
 const projects = [
   {
-    title: "E-Commerce Mobile App",
-    description: "A full-featured e-commerce application with product browsing, cart management, secure checkout, and order tracking. Built with Flutter and Firebase.",
+    title: "Decentralized Messaging App",
+    description: "A proof-of-concept decentralized messaging application running on a smart contract (blockchain technology), with a wallet dashboard, secure decentralized messaging, tipping functionality,trust score system and trust ranking. Built on the Arbitrum Sepolia chain.",
     screenshots: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=450&fit=crop",
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=450&fit=crop",
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=450&fit=crop",
+      "assets/5.svg",
+      "assets/4.svg",
+      "assets/1.svg",
+      "assets/2.svg",
+      "assets/3.svg",
     ],
-    techStack: ["Flutter", "Dart", "Firebase", "Stripe"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://youtube.com",
+    techStack: ["Flutter", "Dart", "Firebase", "Web3Auth", "Solidity"],
+    githubUrl: "https://github.com/0xiammatrixx/flutter_quick_start.git",
+    //demoUrl: "https://youtube.com",
   },
   {
-    title: "Fitness Tracking App",
-    description: "A comprehensive fitness app with workout plans, progress tracking, and social features. Integrates with health APIs for accurate data.",
+    title: "Mp3 Downloader, mp4 to mp3 converter, YT video downloader",
+    description: "An application that allows users to download music from various sources, such as YTMusic, Amazon, Apple Music, Deezer and Spotify, and save them to their device using a cunning workaround with youtube and cookie sessions. YOu can also convert mp4 to mp3 and download youtube videos with a 100mb file limit.",
     screenshots: [
-      "https://images.unsplash.com/photo-1461896836934- voices?w=800&h=450&fit=crop",
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+      "assets/sd1.png",
+      "assets/sd2.png",
+      "assets/sd3.png",
+      "assets/sd4.png",
     ],
-    techStack: ["Flutter", "Dart", "Node.js", "MongoDB"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://youtube.com",
+    techStack: ["Flutter", "Dart", "Python"],
+    githubUrl: "https://github.com/0xiammatrixx/songdownloader.git",
+    //demoUrl: "https://youtube.com",
   },
   {
-    title: "Crypto Wallet App",
-    description: "A secure cryptocurrency wallet with multi-chain support, real-time price tracking, and Web3 authentication integration.",
+    title: "Duration Formatting Flutter Library",
+    description: "A tiny Dart utility for formatting Duration objects into clean, human-friendly strings. This was a personal task done to understand package structure, publishing flow and to develop for developers even if it's very minimal.",
     screenshots: [
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
-      "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=450&fit=crop",
-      "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&h=450&fit=crop",
+      "assets/duration_dev1.png",
+      "assets/duration_dev2.png",
     ],
-    techStack: ["Flutter", "Dart", "Web3Auth", "Solidity"],
-    githubUrl: "https://github.com",
-  },
-  {
-    title: "Food Delivery App",
-    description: "A feature-rich food delivery application with real-time order tracking, restaurant discovery, and seamless payment integration.",
-    screenshots: [
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=450&fit=crop",
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=450&fit=crop",
-    ],
-    techStack: ["Flutter", "Dart", "Firebase", "Google Maps"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://youtube.com",
+    techStack: ["Dart",],
+    githubUrl: "https://github.com/0xIammatrixx/pretty_duration",
   },
 ];
 
@@ -71,8 +63,8 @@ export const ProjectsSection = () => {
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of mobile applications I've built, showcasing my expertise
-            in Flutter development and modern app architecture.
+            A collection of mobile applications I've built as personal projects, showcasing my expertise
+            in Flutter development. PS these were done without UI designs 
           </p>
         </motion.div>
 
