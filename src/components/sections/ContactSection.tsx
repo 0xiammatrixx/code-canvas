@@ -1,18 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-<<<<<<< HEAD
 import { Github, Mail, Send, Twitter, CheckCircle } from "lucide-react";
-=======
-import { Github, Mail, Send, CheckCircle } from "lucide-react";
->>>>>>> 8d14bded36c14572247eee8389dba3011a0e6455
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/0xIammatrixx", label: "GitHub" },
-<<<<<<< HEAD
   { icon: Twitter, href: "https://twitter.com/_i_am_matrix", label: "X" },
-=======
->>>>>>> 8d14bded36c14572247eee8389dba3011a0e6455
   { icon: Mail, href: "mailto:davidotom50@gmail.com", label: "Email" },
 ];
 
@@ -25,11 +18,7 @@ export const ContactSection = () => {
 
   useEffect(() => {
     if (isSuccess) {
-<<<<<<< HEAD
       const timer = setTimeout(() => setIsSuccess(false), 2000);
-=======
-      const timer = setTimeout(() => setIsSuccess(false), 3000);
->>>>>>> 8d14bded36c14572247eee8389dba3011a0e6455
       return () => clearTimeout(timer);
     }
   }, [isSuccess]);
