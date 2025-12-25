@@ -41,6 +41,23 @@ const projects = [
     techStack: ["Dart",],
     githubUrl: "https://github.com/0xIammatrixx/pretty_duration",
   },
+  {
+    title: "PayWallet",
+    description: "A Flutter-based fintech wallet application that supports secure wallet funding, transfers, withdrawals, and transaction tracking using a Paystack-backed payment flow.",
+    screenshots: [
+      "assets/IMG_1.PNG",
+      "assets/IMG_2.PNG",
+      "assets/IMG_3.PNG",
+      "assets/IMG_4.PNG",
+      "assets/IMG_5.PNG",
+      "assets/IMG_6.PNG",
+      "assets/IMG_7.PNG",
+      "assets/IMG_8.PNG",
+      "assets/IMG_9.PNG",
+    ],
+    techStack: ["Dart", "Flutter", "Python", "Hive", "Provider"],
+    githubUrl: "https://github.com/0xiammatrixx/fintech_frontend.git",
+  },
 ];
 
 export const ProjectsSection = () => {
