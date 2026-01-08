@@ -32,6 +32,34 @@ const projects = [
     //demoUrl: "https://youtube.com",
   },
   {
+    title: "Mp3 Downloader, mp4 to mp3 converter, YT video downloader (Demo-to-come)",
+    description: "An application that allows users to download music from various sources, such as YTMusic, Amazon, Apple Music, Deezer and Spotify, and save them to their device using a cunning workaround with yt_dl and cookie sessions. YOu can also convert mp4 to mp3 and download youtube videos with a 100mb file limit.",
+    screenshots: [
+      "assets/sd1.png",
+      "assets/sd2.png",
+      "assets/sd3.png",
+      "assets/sd4.png",
+    ],
+    techStack: ["Flutter", "Dart", "Python"],
+    githubUrl: "https://github.com/0xiammatrixx/songdownloader.git",
+    //demoUrl: "https://youtube.com",
+  },{
+    title: "Aptos NFT MarketPlace",
+    description: "This frontend application is built to interact with an NFT marketplace smart contract deployed on the Aptos blockchain. The marketplace supports minting, listing, buying, selling, and burning NFTs, with features for categories, tags, and rarity levels.",
+    screenshots: [
+      "assets/apt1.PNG",
+      "assets/apt2.PNG",
+      "assets/apt3.PNG",
+      "assets/apt4.PNG",
+      "assets/apt5.PNG",
+      "assets/apt6.PNG",
+      "assets/apt7.PNG",
+    ],
+    techStack: ["Typescript", "Solidity", "Move", "Foundry"],
+    githubUrl: "https://github.com/0xiammatrixx/apt4bounty.git",
+    demoUrl: "https://youtu.be/ALgkD_2Hhvk?si=YyKyTrcv3xaW0LGe",
+  },
+  {
     title: "Duration Formatting Flutter Library",
     description: "A tiny Dart utility for formatting Duration objects into clean, human-friendly strings. This was a personal task done to understand package structure, publishing flow and to develop for developers even if it's very minimal.",
     screenshots: [
