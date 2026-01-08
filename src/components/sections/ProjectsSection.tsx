@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 // Sample project data - replace with your actual projects
 const projects = [
   {
-    title: "Decentralized Messaging App",
+    title: "Decentralized Messaging App (ReadMe and Demo will be updated soon)",
     description: "A proof-of-concept decentralized messaging application running on a smart contract (blockchain technology), with a wallet dashboard, secure decentralized messaging, tipping functionality,trust score system and trust ranking. Built on the Arbitrum Sepolia chain.",
     screenshots: [
       "assets/5.svg",
@@ -16,11 +16,11 @@ const projects = [
     ],
     techStack: ["Flutter", "Dart", "Firebase", "Web3Auth", "Solidity"],
     githubUrl: "https://github.com/0xiammatrixx/flutter_quick_start.git",
-    //demoUrl: "https://youtube.com",
+    demoUrl: "https://youtu.be/FrANv7GnACM?si=jfqm068nyDX7PBqP",
   },
   {
-    title: "Mp3 Downloader, mp4 to mp3 converter, YT video downloader",
-    description: "An application that allows users to download music from various sources, such as YTMusic, Amazon, Apple Music, Deezer and Spotify, and save them to their device using a cunning workaround with youtube and cookie sessions. YOu can also convert mp4 to mp3 and download youtube videos with a 100mb file limit.",
+    title: "Mp3 Downloader, mp4 to mp3 converter, YT video downloader (Demo-to-come)",
+    description: "An application that allows users to download music from various sources, such as YTMusic, Amazon, Apple Music, Deezer and Spotify, and save them to their device using a cunning workaround with yt_dl and cookie sessions. YOu can also convert mp4 to mp3 and download youtube videos with a 100mb file limit.",
     screenshots: [
       "assets/sd1.png",
       "assets/sd2.png",
@@ -57,6 +57,7 @@ const projects = [
     ],
     techStack: ["Dart", "Flutter", "Python", "Hive", "Provider"],
     githubUrl: "https://github.com/0xiammatrixx/fintech_frontend.git",
+    demoUrl: "https://youtu.be/PY04cv3hruQ?feature=shared",
   },
 ];
 
