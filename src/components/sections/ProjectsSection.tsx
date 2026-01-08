@@ -110,7 +110,7 @@ export const ProjectsSection = () => {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A collection of mobile applications I've built as personal projects, showcasing my expertise
-            in Flutter development. PS these were done without UI designs 
+            in Flutter development. PS there's a lot more on my github profile. 
           </p>
         </motion.div>
 
