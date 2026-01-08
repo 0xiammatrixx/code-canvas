@@ -32,18 +32,6 @@ const projects = [
     //demoUrl: "https://youtube.com",
   },
   {
-    title: "Mp3 Downloader, mp4 to mp3 converter, YT video downloader (Demo-to-come)",
-    description: "An application that allows users to download music from various sources, such as YTMusic, Amazon, Apple Music, Deezer and Spotify, and save them to their device using a cunning workaround with yt_dl and cookie sessions. YOu can also convert mp4 to mp3 and download youtube videos with a 100mb file limit.",
-    screenshots: [
-      "assets/sd1.png",
-      "assets/sd2.png",
-      "assets/sd3.png",
-      "assets/sd4.png",
-    ],
-    techStack: ["Flutter", "Dart", "Python"],
-    githubUrl: "https://github.com/0xiammatrixx/songdownloader.git",
-    //demoUrl: "https://youtube.com",
-  },{
     title: "Aptos NFT MarketPlace",
     description: "This frontend application is built to interact with an NFT marketplace smart contract deployed on the Aptos blockchain. The marketplace supports minting, listing, buying, selling, and burning NFTs, with features for categories, tags, and rarity levels.",
     screenshots: [
