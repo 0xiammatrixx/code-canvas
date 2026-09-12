@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { identity } from "@/lib/portfolio";
 
 const navLinks = [
   { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
+  { name: "Work", href: "#work" },
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
@@ -16,9 +15,10 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 8);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -28,88 +28,78 @@ export const Navbar = () => {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const goTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-4" : "bg-transparent py-6"
+    <header
+      className={`sticky top-0 z-50 bg-background transition-colors ${
+        isScrolled || isMobileMenuOpen ? "border-b border-border" : "border-b border-transparent"
       }`}
     >
-      <nav className="container mx-auto px-6 flex items-center justify-between">
-        <motion.a
+      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6 md:px-8">
+        <a
           href="#"
-          className="text-xl font-bold text-gradient"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          onClick={goTop}
+          className="font-mono text-sm font-medium tracking-tight text-foreground"
         >
-          {"</>"}
-        </motion.a>
+          {identity.name}
+        </a>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-8">
+        <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <li key={link.name}>
+            <button
+              key={link.name}
+              onClick={() => scrollToSection(link.href)}
+              className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.name}
+            </button>
+          ))}
+          <a
+            href={identity.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-primary"
+          >
+            GitHub ↗
+          </a>
+        </div>
+
+        <button
+          className="md:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </nav>
+
+      {isMobileMenuOpen && (
+        <div className="border-t border-border md:hidden">
+          <nav className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-4">
+            {navLinks.map((link) => (
               <button
+                key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium"
+                className="py-2 text-left font-mono text-sm uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.name}
               </button>
-            </li>
-          ))}
-          <li>
-            <Button variant="hero" size="sm" asChild>
-              <a href="https://github.com/0xIammatrixx" target="_blank" rel="noopener noreferrer">
-                GitHub
-              </a>
-            </Button>
-          </li>
-        </ul>
-
-        {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </Button>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-border"
-          >
-            <ul className="container mx-auto px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-base font-medium w-full text-left py-2"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-              <li>
-                <Button variant="hero" className="w-full" asChild>
-                  <a href="https://github.com/0xIammatrixx" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                  </a>
-                </Button>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+            ))}
+            <a
+              href={identity.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2 font-mono text-sm text-foreground"
+            >
+              GitHub ↗
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 };

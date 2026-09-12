@@ -1,143 +1,60 @@
-import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, Twitter, } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { identity } from "@/lib/portfolio";
 
 export const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-      
-      {/* Animated glow orbs */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-      />
+    <section className="border-b border-border">
+      <div className="mx-auto max-w-5xl px-6 pb-20 pt-24 md:px-8 md:pb-28 md:pt-32">
+        <p className="font-mono text-xs uppercase tracking-[0.16em] text-primary">
+          {identity.role}
+        </p>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-primary mb-6">
-              Available for new projects
-            </span>
-          </motion.div>
+        <h1 className="mt-6 font-serif text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-7xl">
+          {identity.name}
+        </h1>
 
-          <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Hi, I'm{" "}
-            <span className="text-gradient">Otom David</span>
-          </motion.h1>
+        <p className="mt-8 max-w-2xl font-serif text-xl leading-relaxed text-foreground/90 md:text-2xl">
+          I build deterministic software around large language models —
+          architecture first, models second. My work sits at the boundary where
+          natural language meets validated, compiled execution.
+        </p>
 
-          <motion.p
-            className="text-xl md:text-2xl text-muted-foreground mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Flutter Mobile Developer
-          </motion.p>
+        <p className="mt-5 max-w-2xl font-mono text-sm leading-relaxed text-muted-foreground">
+          Independent author of a published research paper · mobile and
+          critical-infrastructure work as supporting range.
+        </p>
 
-          <motion.p
-            className="text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <a
+            href={identity.zenodo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="arrow-link group"
           >
-            Building beautiful, high-performance mobile applications 
-            with Flutter & Dart. Passionate about clean code and great UX.
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            Read the research
+            <ArrowUpRight
+              size={15}
+              className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+          <a href="#work" className="arrow-link group">
+            Selected work
+            <ArrowDown size={15} className="transition-transform duration-200 group-hover:translate-y-0.5" />
+          </a>
+          <a
+            href={identity.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="arrow-link group"
           >
-            <Button variant="hero" size="lg" asChild>
-              <a href="https://github.com/0xIammatrixx" target="_blank" rel="noopener noreferrer">
-                View My Work
-                <ArrowRight size={18} />
-              </a>
-            </Button>
-            <Button variant="glass" size="lg" asChild>
-              <a href="#contact">
-                Get In Touch
-              </a>
-            </Button>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            className="flex items-center justify-center gap-4 mt-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            {[
-              { icon: Github, href: "https://github.com/0xIammatrixx", label: "GitHub" },
-              { icon: Twitter, href: "https://twitter.com/_i_am_matrix", label: "X" },
-              { icon: Mail, href: "mailto:davidotom50@gmail.com", label: "Email" },
-            ].map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg glass text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={label}
-              >
-                <Icon size={20} />
-              </motion.a>
-            ))}
-          </motion.div>
+            GitHub
+            <ArrowUpRight
+              size={15}
+              className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
-          <motion.div
-            className="w-1 h-2 bg-primary rounded-full"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };

@@ -1,82 +1,76 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Code2, Smartphone, Zap } from "lucide-react";
+import { SectionHeader } from "@/components/SectionHeader";
 
-const highlights = [
-  {
-    icon: Smartphone,
-    title: "Mobile First",
-    description: "Specialized in building cross-platform mobile apps with Flutter",
-  },
-  {
-    icon: Code2,
-    title: "Clean Code",
-    description: "Writing maintainable, scalable, and well-documented code",
-  },
-  {
-    icon: Zap,
-    title: "Performance",
-    description: "Optimizing for speed, smooth animations, and great UX",
-  },
+const focus = [
+  "LLM integration with deterministic guardrails",
+  "Semantic IR design & validation",
+  "Independent research & publication",
+];
+
+const range = [
+  "Mobile — Flutter & Dart",
+  "Fintech & payments",
+  "Smart contracts & critical infrastructure",
 ];
 
 export const AboutSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="about" className="py-24 relative" ref={ref}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            About <span className="text-gradient">Me</span>
-          </h2>
+    <section id="about" className="py-24 md:py-32">
+      <div className="container-page">
+        <SectionHeader index="01" title="About" />
 
-          <img
-            src="assets/profile.jpg"
-            alt="Avatar"
-            className="w-32 h-32 rounded-full mx-auto mb-6"
-          />
-
-          <div className="glass rounded-2xl p-8 md:p-12 mb-12">
-            <p className="text-lg text-foreground/90 leading-relaxed mb-6">
-              I'm a 21 year old Software Engineering graduate. I'm a dedicated Flutter mobile developer with a passion for creating
-              beautiful, high-performance applications. With expertise in Dart and
-              the Flutter framework, I build cross-platform apps that deliver
-              native-like experiences on both iOS and Android, building clean, scalable apps with additional skiil in blockchain and smart contract integration.
+        <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+          <div className="space-y-6 font-serif text-base leading-relaxed text-foreground/90 md:col-span-8 md:text-lg">
+            <p>
+              I'm a software engineer with a foundation in software architecture
+              and a focus on the safe integration of large language models into
+              deterministic software. My default position is that models
+              translate and code decides — so I design systems with a clear
+              boundary between the probabilistic and the provable.
             </p>
-            <p className="text-lg text-foreground/90 leading-relaxed">
-              My journey in mobile development has equipped me with skills in
-              problem-solving, clean code, and modern UI/UX
-              principles. I'm constantly exploring new technologies and best
-              practices to deliver exceptional mobile experiences. I’m currently open to mobile development opportunities, collaborations, and exciting technical challenges.
+            <p>
+              I independently authored and published the research paper{" "}
+              <span className="italic">A Validated Semantic Boundary Between
+              Natural Language and Database Execution</span> (Zenodo, 2026). It
+              presents a database-instruction system in which an LLM maps
+              natural language onto a formally specified JSON intermediate
+              representation, while validation, compilation, and execution
+              remain pure, verifiable code — a boundary that held across five
+              controlled experiments where a direct code-generation baseline did
+              not.
+            </p>
+            <p>
+              Around that core sits broader engineering range: mobile
+              applications in Flutter and Dart, fintech wallet systems, and
+              blockchain work touching smart contracts and critical
+              infrastructure — across personal projects, freelance engagements,
+              and early-stage startup work.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className="glass rounded-xl p-6 hover-lift group"
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <item.icon className="text-primary" size={24} />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          <aside className="md:col-span-4">
+            <div>
+              <h3 className="mono-label">Focus</h3>
+              <ul className="mt-4 space-y-2.5 border-l border-border pl-4">
+                {focus.map((item) => (
+                  <li key={item} className="font-mono text-sm text-foreground/80">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="mono-label">Range</h3>
+              <ul className="mt-4 space-y-2.5 border-l border-border pl-4">
+                {range.map((item) => (
+                  <li key={item} className="font-mono text-sm text-foreground/80">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   );

@@ -1,112 +1,119 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ProjectCard } from "@/components/ui/ProjectCard";
+import { ArrowUpRight } from "lucide-react";
+import { SectionHeader } from "@/components/SectionHeader";
+import { projects, type Project } from "@/lib/portfolio";
 
-// Sample project data - replace with your actual projects
-const projects = [
-  {
-    title: "Decentralized Messaging App (ReadMe and Demo will be updated soon)",
-    description: "A proof-of-concept decentralized messaging application running on a smart contract (blockchain technology), with a wallet dashboard, secure decentralized messaging, tipping functionality,trust score system and trust ranking. Built on the Arbitrum Sepolia chain.",
-    screenshots: [
-      "assets/5.svg",
-      "assets/4.svg",
-      "assets/1.svg",
-      "assets/2.svg",
-      "assets/3.svg",
-    ],
-    techStack: ["Flutter", "Dart", "Firebase", "Web3Auth", "Solidity"],
-    githubUrl: "https://github.com/0xiammatrixx/flutter_quick_start.git",
-    demoUrl: "https://youtu.be/FrANv7GnACM?si=jfqm068nyDX7PBqP",
-  },
-  {
-    title: "Mp3 Downloader, mp4 to mp3 converter, YT video downloader (Demo-to-come)",
-    description: "An application that allows users to download music from various sources, such as YTMusic, Amazon, Apple Music, Deezer and Spotify, and save them to their device using a cunning workaround with yt_dl and cookie sessions. YOu can also convert mp4 to mp3 and download youtube videos with a 100mb file limit.",
-    screenshots: [
-      "assets/sd1.png",
-      "assets/sd2.png",
-      "assets/sd3.png",
-      "assets/sd4.png",
-    ],
-    techStack: ["Flutter", "Dart", "Python"],
-    githubUrl: "https://github.com/0xiammatrixx/songdownloader.git",
-    //demoUrl: "https://youtube.com",
-  },
-  {
-    title: "Aptos NFT MarketPlace",
-    description: "This frontend application is built to interact with an NFT marketplace smart contract deployed on the Aptos blockchain. The marketplace supports minting, listing, buying, selling, and burning NFTs, with features for categories, tags, and rarity levels.",
-    screenshots: [
-      "assets/apt1.PNG",
-      "assets/apt2.PNG",
-      "assets/apt3.PNG",
-      "assets/apt4.PNG",
-      "assets/apt5.PNG",
-      "assets/apt6.PNG",
-      "assets/apt7.PNG",
-    ],
-    techStack: ["Typescript", "Solidity", "Move", "Foundry"],
-    githubUrl: "https://github.com/0xiammatrixx/apt4bounty.git",
-    demoUrl: "https://youtu.be/ALgkD_2Hhvk?si=YyKyTrcv3xaW0LGe",
-  },
-  {
-    title: "Duration Formatting Flutter Library",
-    description: "A tiny Dart utility for formatting Duration objects into clean, human-friendly strings. This was a personal task done to understand package structure, publishing flow and to develop for developers even if it's very minimal.",
-    screenshots: [
-      "assets/duration_dev1.png",
-      "assets/duration_dev2.png",
-    ],
-    techStack: ["Dart",],
-    githubUrl: "https://github.com/0xIammatrixx/pretty_duration",
-  },
-  {
-    title: "PayWallet",
-    description: "A Flutter-based fintech wallet application that supports secure wallet funding, transfers, withdrawals, and transaction tracking using a Paystack-backed payment flow.",
-    screenshots: [
-      "assets/IMG_1.PNG",
-      "assets/IMG_2.PNG",
-      "assets/IMG_3.PNG",
-      "assets/IMG_4.PNG",
-      "assets/IMG_5.PNG",
-      "assets/IMG_6.PNG",
-      "assets/IMG_7.PNG",
-      "assets/IMG_8.PNG",
-      "assets/IMG_9.PNG",
-    ],
-    techStack: ["Dart", "Flutter", "Python", "Hive", "Provider"],
-    githubUrl: "https://github.com/0xiammatrixx/fintech_frontend.git",
-    demoUrl: "https://youtu.be/PY04cv3hruQ?feature=shared",
-  },
-];
-
-export const ProjectsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const ProjectLinks = ({ links }: { links: Project["links"] }) => {
+  if (links.length === 0) {
+    return (
+      <span className="font-mono text-xs text-muted-foreground">
+        Private · in development
+      </span>
+    );
+  }
 
   return (
-    <section id="projects" className="py-24 relative" ref={ref}>
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+    <div className="flex flex-wrap gap-x-6 gap-y-2">
+      {links.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 font-mono text-xs text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="text-gradient">Projects</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of mobile applications I've built as personal projects, showcasing my expertise
-            in Flutter development. PS there's a lot more on my github profile. 
-          </p>
-        </motion.div>
+          {link.label}
+          <ArrowUpRight size={12} />
+        </a>
+      ))}
+    </div>
+  );
+};
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} {...project} index={index} />
+export const ProjectsSection = () => {
+  const featured = projects.find((p) => p.featured)!;
+  const rest = projects.filter((p) => !p.featured);
+
+  return (
+    <section id="work" className="border-t border-border py-24 md:py-32">
+      <div className="container-page">
+        <SectionHeader
+          index="02"
+          title="Selected work"
+          lede="Research first, then the engineering range that supports it."
+        />
+
+        {/* Featured research */}
+        <article className="border border-border">
+          <div className="grid md:grid-cols-12">
+            <div className="p-6 md:col-span-7 md:p-10">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-primary">
+                {featured.kind}
+              </p>
+              <h3 className="mt-4 font-serif text-2xl font-semibold leading-snug tracking-tight md:text-3xl">
+                {featured.title}
+              </h3>
+              <p className="mt-5 font-serif text-base leading-relaxed text-foreground/90 md:text-lg">
+                {featured.description}
+              </p>
+              {featured.detail && (
+                <p className="mt-4 font-serif text-base leading-relaxed text-muted-foreground">
+                  {featured.detail}
+                </p>
+              )}
+            </div>
+
+            <div className="border-t border-border bg-secondary/50 p-6 md:col-span-5 md:border-l md:border-t-0 md:p-10">
+              <h4 className="mono-label">Results</h4>
+              <ul className="mt-4 space-y-3">
+                {featured.results?.map((result) => (
+                  <li
+                    key={result}
+                    className="font-mono text-xs leading-relaxed text-foreground/80"
+                  >
+                    {result}
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="mono-label mt-8">Stack</h4>
+              <p className="mt-3 font-mono text-xs leading-relaxed text-muted-foreground">
+                {featured.stack.join(" · ")}
+              </p>
+
+              <div className="mt-8">
+                <ProjectLinks links={featured.links} />
+              </div>
+            </div>
+          </div>
+        </article>
+
+        {/* Other work */}
+        <ul className="mt-16 divide-y divide-border border-b border-border">
+          {rest.map((project) => (
+            <li
+              key={project.title}
+              className="grid gap-4 py-8 md:grid-cols-12 md:gap-8"
+            >
+              <div className="md:col-span-7">
+                <h3 className="font-serif text-xl font-semibold tracking-tight">
+                  {project.title}
+                </h3>
+                <p className="mt-2 max-w-xl font-serif text-base leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+              </div>
+              <div className="md:col-span-5 md:text-right">
+                <p className="mono-label">{project.kind}</p>
+                <p className="mt-3 font-mono text-xs leading-relaxed text-muted-foreground">
+                  {project.stack.join(" · ")}
+                </p>
+                <div className="mt-4 md:flex md:justify-end">
+                  <ProjectLinks links={project.links} />
+                </div>
+              </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
