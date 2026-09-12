@@ -48,6 +48,14 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: "GIOC — Global Infrastructure Operations Console",
+    kind: "Full-stack IoT fleet operations console",
+    description:
+      "A full-stack console for monitoring and controlling a fleet of 1,000 simulated IoT devices across 10 countries — live telemetry dashboard, world map, automatic alert engine, one-click firmware rollout, and role-based access control, served by a single Go process handling ~12,000 requests per minute.",
+    stack: ["Go", "Next.js", "TypeScript", "PostgreSQL", "Redis", "Tailwind"],
+    links: [{ label: "GitHub", href: "https://github.com/0xiammatrixx/GIOC" }],
+  },
+  {
     title: "PhotoBook",
     kind: "Freelance client app · in progress",
     description:
